@@ -124,31 +124,31 @@ La console web H2 est aussi disponible sur http://localhost:8181 (URL JDBC `jdbc
 ### 7.1 Démarrage du conteneur H2
 Commande : `docker compose up -d --build` puis `docker ps`
 
-![Docker](captures/01-docker-compose-up.png)
+<img width="1510" height="674" alt="Capture d&#39;écran 2026-10-21 164306" src="https://github.com/user-attachments/assets/7bddaadf-9826-4b26-b3a3-9583dcd7eb77" />
 
 ### 7.2 Connexion DBeaver réussie
 
-![Connexion DBeaver](captures/02-dbeaver-connexion.png)
+<img width="438" height="439" alt="Capture d&#39;écran 2026-10-21 165819" src="https://github.com/user-attachments/assets/408a51a8-f57d-47bf-b5ac-c8c15e963595" />
 
 ### 7.3 Simulation du conflit (`BookingConflictSimulation`)
 Console montrant : transaction 1 réussie, transaction 2 en `OptimisticLockException`, requête `update ... where id=? and version=?`.
 
-![Conflit](captures/03-console-conflit.png)
+<img width="1668" height="751" alt="Capture d&#39;écran 2026-10-21 172638" src="https://github.com/user-attachments/assets/beafc2d0-ca49-4364-aaad-fab2da250f54" />
 
 ### 7.4 Table `room_bookings` après le conflit
 Vous devez voir `room_name = Salle B` et `version = 1` (la modification « Salle C » a été rejetée).
 
-![Table après conflit](captures/04-dbeaver-table-apres-conflit.png)
+<img width="784" height="340" alt="image" src="https://github.com/user-attachments/assets/e1cd0b7b-1868-451e-9d1a-916bb64c39fd" />
 
 ### 7.5 Simulation avec retry (`BookingRetrySimulation`)
-Console montrant : « Conflit détecté (tentative 1/3) » puis « modification réussie après retry ».
+Console montrant : « Conflit détecté (tentative 1/3) ».
 
-![Retry](captures/05-console-retry.png)
+<img width="881" height="741" alt="image" src="https://github.com/user-attachments/assets/b1097363-4c49-4241-9e5d-18fa97034d4d" />
 
 ### 7.6 Table `room_bookings` après le retry
 Vous devez voir `room_name = Salle C` et `version = 2` sur la ligne créée par cette exécution (chaque exécution crée une nouvelle ligne).
 
-![Table après retry](captures/06-dbeaver-table-apres-retry.png)
+<img width="1227" height="795" alt="Capture d&#39;écran 2026-10-21 170616" src="https://github.com/user-attachments/assets/6963b58f-83f5-48ef-853a-5e2675867291" />
 
 ## 8. Résultat attendu
 
@@ -166,6 +166,7 @@ Retry :
 Conflit détecté (tentative 1/3)
 Transaction 2 : modification réussie après retry. -> RoomBooking{id=1, room='Salle C', version=2}
 ```
+<img width="1480" height="798" alt="Capture d&#39;écran 2026-10-21 170401" src="https://github.com/user-attachments/assets/b6710619-b3a9-47d2-9926-a010f14901d7" />
 
 ## 9. Principe en bref
 
