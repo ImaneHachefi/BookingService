@@ -1,0 +1,13 @@
+services:
+  h2:
+    build: ./docker/h2
+    container_name: booking-locking-h2
+    restart: unless-stopped
+    ports:
+      - "9092:1521"
+      - "8181:81"
+    volumes:
+      - h2_data:/h2-data
+
+volumes:
+  h2_data:
